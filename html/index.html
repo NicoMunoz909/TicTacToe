@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>INDEX</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <script src="../javaScript/script.js" async></script>
+  </head>
+  <body>
+    <div id="main-container" class="flex-vertical">
+
+      <div id="title">
+        <h1>Tic Tac Toe</h1>
+      </div>
+      <div class="flex-horizontal" id="main-page-buttons">
+        <button class="button" id="2p-game">2 Players Game</button>
+        <button class="button" id="1p-game">VS. Bot</button>
+      </div>
+
+      <form autocomplete="off" action="" id="1p-name-select" class="flex-vertical hide">
+        
+        <div>
+          <label for="p1-name">Player 1 Name:</label>
+          <input id="player-name-form" type="text" name="p1-name" required></input>
+        </div>
+        
+        <button type="button" class="button" id="1p-start">Start</button>
+      </form>
+
+      <form autocomplete="off" action="" id="2p-name-select" class="flex-vertical hide">
+        
+        <div>
+          <label for="p1-name">Player 1 Name:</label>
+          <input id="p1-name-form" type="text" name="p1-name" required></input>
+        </div>
+        
+        <div>
+          <label for="p2-name">Player 2 Name:</label>
+          <input id="p2-name-form" type="text" name="p2-name" required></input>
+        </div>
+        
+        <button type="button" class="button" id="2p-start">Start</button>
+      </form>
+
+      <div id="gameboard-score" class="flex-horizontal hide">
+        <div class="flex-vertical scoreboard">
+          <p id="p1-name"></p>
+          <p id="p1-score">0</p>
+        </div>
+        <div id="gameboard">
+          <div id="top-left" class="cell top left" data-name="topLeft"></div>
+          <div id="top-center" class="cell top" data-name="topCenter"></div>
+          <div id="top-right" class="cell top right" data-name="topRight"></div>
+          <div id="mid-left" class="cell left" data-name="midLeft"></div>
+          <div id="mid-center" class="cell" data-name="midCenter"></div>
+          <div id="mid-right" class="cell right" data-name="midRight"></div>
+          <div id="bot-left" class="cell bottom left" data-name="botLeft"></div>
+          <div id="bot-center" class="cell bottom" data-name="botCenter"></div>
+          <div id="bot-right" class="cell bottom right" data-name="botRight"></div>
+        </div>
+        <div class="flex-vertical scoreboard">
+          <p id="p2-name"></p>
+          <p id="p2-score">0</p>
+        </div>
+      </div>
+      <div id="announcer" class="hide">
+        <p id="announcer-text">LOREN Turn</p>
+      </div>
+      <div id="finished-game-buttons" class="flex-horizontal hide">
+        <button id="reset-score" class="button">Reset Score</button>
+        <button id="play-again" class="button">Play Again</button>
+        <button id="main-page" class="button">Main Page</button>
+      </div>
+      <div id="ongoing-game-buttons" class="flex-horizontal hide">
+        <button id="restart-game" class="button">Restart</button>
+      </div>
+
+    </div>
+  </body>
+</html>

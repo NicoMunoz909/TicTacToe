@@ -1,0 +1,120 @@
+body {
+  height: 95vh;
+  font-family: 'Pangolin', cursive;
+}
+#main-container {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+}
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  text-align: center;
+  font-size: 72px;
+  text-shadow: 3px 3px 5px gray;
+  border-radius: 50%;
+}
+.flex-horizontal{
+  display: flex;
+  justify-content: space-around;
+}
+#main-page-buttons > *{
+  margin: 20px;
+}
+.button {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  background: linear-gradient(45deg,rgb(122, 27, 27) 0% ,rgb(248, 82, 82) 100%);
+  outline: none;
+  border: none;
+  font-family: inherit;
+  background-color: aqua;
+  transition: 0.1s;
+}
+
+.button:active {
+  box-shadow: 2px 2px 2px grey,
+              -2px -2px 2px grey,
+              -2px 2px 2px grey,
+              2px -2px 2px grey;
+}
+
+.button:hover {
+  background: linear-gradient(45deg,rgb(248, 82, 82) 0% ,rgb(122, 27, 27) 100%);
+}
+
+label {
+  display: block;
+}
+
+form > * {
+  margin: 15px;
+}
+
+#gameboard-score {
+  width: 100%;
+}
+
+#gameboard {
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+#announcer-text {
+  font-size: 25px;
+}
+
+#finished-game-buttons {
+  width: 100%;
+}
+
+.cell {
+  border: 1px solid red;
+  position: relative;
+  text-align: center;
+  font-size: 700%;
+}
+
+.cell:hover {
+  box-shadow: 3px 3px 10px rgb(170, 68, 68) inset,
+              -3px -3px 10px rgb(170, 68, 68) inset;
+}
+
+.top {
+  border-top: none;
+}
+
+.right {
+  border-right: none;
+}
+
+.bottom {
+  border-bottom: none;
+}
+
+.left {
+  border-left: none;
+}
+
+.marked:hover {
+  box-shadow: none;
+}
+
+.scoreboard {
+  align-self: flex-start;
+  font-size: 25px;
+}
+
+.hide {
+  display: none;
+}
