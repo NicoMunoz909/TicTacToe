@@ -16,9 +16,9 @@ const DisplayController = (() => {
   const announcer = document.getElementById('announcer');
 
   const display1PlayerNameSelect = () => {
-    alert("AI Not implemented yet");
-    /*hide(titlePage);
-    show(nameSelect1p);*/
+    //alert("AI Not implemented yet");
+    hide(titlePage);
+    show(nameSelect1p);
   };
   const display2PlayersNameSelect = () => {
     hide(titlePage);
@@ -130,18 +130,31 @@ const Game = (() => {
   
   })();
   
-  const Player = (playerName,playerMark) => {
+  const Player = (playerName,playerMark,playerType) => {
   
     const name = playerName;
     const mark = playerMark;
+    const type = playerType;
   
     const editName = (newName) => {name = newName};
   
     const markCell = (cell) => {
       Gameboard.markCell(cell,mark);
     }
+
+    const getCell = () => {
+      cells = []
+      for (let key in Gameboard.board) {
+        if (Gameboard.board[key].value != 'X' && Gameboard.board[key].value != 'O'){ 
+          cells.push(Gameboard.board[key].div)
+        }
+      }
+      console.log(cells);
+      let cell = cells[Math.floor(Math.random() * cells.length)];
+      return cell
+    }
   
-    return {markCell, name};
+    return {markCell, getCell, name, type};
   
   }
 
@@ -152,26 +165,27 @@ const Game = (() => {
 
   const create1Player = () => {
     let playerName = document.getElementById('p1-name').textContent;
-    console.log(playerName)
-    player1 = Player(playerName, 'X')
-    player2 = Player("Blitzcranck", 'O')
+    player1 = Player(playerName, 'X', "human")
+    player2 = Player("Blitzcranck", 'O', "bot")
   };
 
   const create2Players = () => {
     let player1Name = document.getElementById('p1-name').textContent;
     let player2Name = document.getElementById('p2-name').textContent;
-    player1 = Player(player1Name, 'X')
-    player2 = Player(player2Name, 'O')
-    
+    player1 = Player(player1Name, 'X', "human")
+    player2 = Player(player2Name, 'O', "human") 
   };
 
   const checkGameOver  = () => {
     if (checkVertical()[0]) {
       gameOver(checkVertical()[1]);
+      return true;
     } else if (checkHorizontal()[0]) {
       gameOver(checkHorizontal()[1]);
+      return true;
     } else if (checkDiagonal()[0]) {
       gameOver(checkDiagonal()[1]);
+      return true;
     }
     else {
       let count = 0;
@@ -180,7 +194,10 @@ const Game = (() => {
           count ++;
         }
       }
-      if (count == 9) {gameOver("tie");}
+      if (count == 9) {
+        gameOver("tie");
+        return true;
+      }
       }
   };
   const checkVertical = () => {
@@ -247,10 +264,12 @@ const Game = (() => {
   };
 
   function markCell() {
+    let cell = this;
+    if (!p1Turn && player2.type == "bot") {cell = player2.getCell()}
     if (p1Turn) {
-      player1.markCell(this);
+      player1.markCell(cell);
     } else {
-      player2.markCell(this);
+      player2.markCell(cell);
     }
     switchTurn();
     if (p1Turn) {
@@ -258,9 +277,10 @@ const Game = (() => {
     } else {
       Gameboard.updateAnnouncer(`${player2.name}'s turn`);
     }
-    this.classList.add('marked')
-    this.removeEventListener('click',markCell);
-    checkGameOver();
+    cell.classList.add('marked')
+    cell.removeEventListener('click',markCell);
+    if (checkGameOver()){return};
+    if (!p1Turn && player2.type == "bot" ) {markCell()}
   };
 
   const restartGame = () => {
